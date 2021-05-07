@@ -7,8 +7,6 @@
 
 #include "WARWorldActorRegistrationComponent.generated.h"
 
-class UWARWorldActorRegistry;
-
 UCLASS( ClassGroup = ( Custom ), meta = ( BlueprintSpawnableComponent ) )
 class WORLDACTORREGISTRY_API UWARWorldActorRegistrationComponent final : public UActorComponent
 {
