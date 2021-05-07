@@ -22,7 +22,10 @@ void UWARWorldActorRegistrationComponent::BeginPlay()
     {
         if ( auto * world_actor_registry = world->GetSubsystem< UWARWorldActorRegistry >() )
         {
-            world_actor_registry->AddActorToRegistry( GetOwner(), GameplayTag );
+            if ( ensure( GameplayTag.IsValid() ) )
+            {
+                world_actor_registry->AddActorToRegistry( GetOwner(), GameplayTag );
+            }
         }
     }
 }

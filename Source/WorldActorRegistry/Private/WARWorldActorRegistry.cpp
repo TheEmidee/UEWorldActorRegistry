@@ -38,16 +38,14 @@ AActor * UWARWorldActorRegistry::GetActorFromClassWithTag( UClass * actor_class,
 
 bool UWARWorldActorRegistry::AddActorToRegistry( AActor * actor, const FGameplayTag tag )
 {
-    if ( actor == nullptr ||
-         !actor->HasAuthority() ||
-         Registry.Num() == 0 )
+    if ( actor == nullptr || !actor->HasAuthority() )
     {
         return false;
     }
 
     auto & existing_actors = Registry.FindOrAdd( actor->GetClass() );
 
-    if ( existing_actors.Find( tag ) )
+    if ( ensure( existing_actors.Find( tag ) ) )
     {
         return false;
     }
