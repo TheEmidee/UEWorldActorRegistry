@@ -8,6 +8,13 @@ namespace UnrealBuildTool.Rules
             PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
             bEnforceIWYU = true;
 
+            PrivateIncludePaths.AddRange(
+                new string[]
+                {
+                    "WorldActorRegistry/Private"
+                }
+            );
+
             PublicDependencyModuleNames.AddRange(
                 new string[] { 
                     "Core",

@@ -1,6 +1,6 @@
-#include "WorldActorRegistry/Public/WARWorldActorRegistrationComponent.h"
+#include "WARWorldActorRegistrationComponent.h"
 
-#include "WorldActorRegistry/Public/WARWorldActorRegistry.h"
+#include "WARWorldActorRegistry.h"
 
 #include <GameFramework/Actor.h>
 

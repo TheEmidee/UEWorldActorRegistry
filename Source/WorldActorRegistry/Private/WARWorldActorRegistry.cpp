@@ -1,4 +1,4 @@
-#include "WorldActorRegistry/Public/WARWorldActorRegistry.h"
+#include "WARWorldActorRegistry.h"
 
 TArray< AActor * > UWARWorldActorRegistry::GetActorsFromClass( UClass * actor_class ) const
 {
