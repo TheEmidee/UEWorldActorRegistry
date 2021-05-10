@@ -13,14 +13,10 @@ class WORLDACTORREGISTRY_API UWARWorldActorRegistry : public UWorldSubsystem
 
 public:
     UFUNCTION( BlueprintPure )
-    TArray< AActor * > GetActorsFromClass( UClass * actor_class ) const;
+    AActor * GetActorWithTag( const FGameplayTag gameplay_tag ) const;
 
     UFUNCTION( BlueprintPure )
-    AActor * GetActorFromClass( UClass * actor_class ) const;
-
-    UFUNCTION( BlueprintPure )
-    AActor * GetActorFromClassWithTag( UClass * actor_class,
-        const FGameplayTag gameplay_tag ) const;
+    AActor * GetActorsWithTag( const FGameplayTag gameplay_tag ) const;
 
     UFUNCTION( BlueprintCallable )
     bool AddActorToRegistry( AActor * actor, const FGameplayTag tag );
@@ -32,5 +28,6 @@ public:
     void Clear();
 
 private:
-    TMap< UClass *, TMap< FGameplayTag, AActor * > > Registry;
+    UPROPERTY()
+    TMap< FGameplayTag, AActor * > Registry;
 };

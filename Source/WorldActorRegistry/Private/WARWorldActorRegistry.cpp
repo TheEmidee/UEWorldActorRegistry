@@ -1,39 +1,24 @@
 #include "WARWorldActorRegistry.h"
 
-TArray< AActor * > UWARWorldActorRegistry::GetActorsFromClass( UClass * actor_class ) const
+AActor * UWARWorldActorRegistry::GetActorWithTag( const FGameplayTag gameplay_tag ) const
 {
-    TArray< AActor * > result;
-
-    if ( const auto * existing_actors = Registry.Find( actor_class ) )
-    {
-        ( *existing_actors ).GenerateValueArray( result );
-    }
-
-    return result;
-}
-
-AActor * UWARWorldActorRegistry::GetActorFromClass( UClass * actor_class ) const
-{
-    const auto existing_actors = GetActorsFromClass( actor_class );
-
-    if ( existing_actors.Num() > 0 )
-    {
-        return existing_actors[ 0 ];
-    }
-
-    return nullptr;
-}
-
-AActor * UWARWorldActorRegistry::GetActorFromClassWithTag( UClass * actor_class, const FGameplayTag gameplay_tag ) const
-{
-    const auto * existing_actors = Registry.Find( actor_class );
-
-    if ( const auto * actor = existing_actors->Find( gameplay_tag ) )
+    if ( const auto * actor = Registry.Find( gameplay_tag ) )
     {
         return *actor;
     }
 
     return nullptr;
+}
+
+AActor * UWARWorldActorRegistry::GetActorsWithTag( const FGameplayTag gameplay_tag ) const
+{
+    TArray< FGameplayTag > tags;
+    Registry.GetKeys( tags );
+
+    for(const auto &tag : tags)
+    {
+        
+    }
 }
 
 bool UWARWorldActorRegistry::AddActorToRegistry( AActor * actor, const FGameplayTag tag )
