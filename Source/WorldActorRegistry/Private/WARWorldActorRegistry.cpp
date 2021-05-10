@@ -43,9 +43,14 @@ bool UWARWorldActorRegistry::AddActorToRegistry( AActor * actor, const FGameplay
         return false;
     }
 
+    if ( !ensure( tag.IsValid() ) )
+    {
+        return false;
+    }
+
     auto & existing_actors = Registry.FindOrAdd( actor->GetClass() );
 
-    if ( ensure( existing_actors.Find( tag ) ) )
+    if ( !ensure( !existing_actors.Find( tag ) ) )
     {
         return false;
     }

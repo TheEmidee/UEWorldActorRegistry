@@ -2,8 +2,7 @@
 
 #include <Components/ActorComponent.h>
 #include <CoreMinimal.h>
-
-#include "GameplayTagContainer.h"
+#include <GameplayTagContainer.h>
 
 #include "WARWorldActorRegistrationComponent.generated.h"
 
@@ -19,6 +18,6 @@ public:
     void BeginDestroy() override;
 
 private:
-    UPROPERTY( EditDefaultsOnly )
+    UPROPERTY( EditAnywhere )
     FGameplayTag GameplayTag;
 };
