@@ -62,15 +62,9 @@ bool UWARWorldActorRegistry::AddActorToRegistry( AActor * actor, const FGameplay
         return false;
     }
 
-    TArray< TArray< AActor * > > values;
-    Registry.GenerateValueArray( values );
-
-    for ( const auto & actor_array : values )
+    if ( IsActorRegistered( actor ) )
     {
-        if ( actor_array.Contains( actor ) )
-        {
-            return false;
-        }
+        return false;
     }
 
     auto & existing_actors = Registry.FindOrAdd( tag );
@@ -104,4 +98,20 @@ bool UWARWorldActorRegistry::RemoveActorFromRegistry( AActor * actor, const FGam
 void UWARWorldActorRegistry::Clear()
 {
     Registry.Reset();
+}
+
+bool UWARWorldActorRegistry::IsActorRegistered( AActor * actor ) const
+{
+    TArray< TArray< AActor * > > values;
+    Registry.GenerateValueArray( values );
+
+    for ( const auto & actor_array : values )
+    {
+        if ( actor_array.Contains( actor ) )
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

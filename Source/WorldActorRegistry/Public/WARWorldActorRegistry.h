@@ -27,6 +27,9 @@ public:
     UFUNCTION( BlueprintCallable )
     void Clear();
 
+    UFUNCTION( BlueprintPure )
+    bool IsActorRegistered( AActor * actor ) const;
+
 private:
     TMap< FGameplayTag, TArray< AActor * > > Registry;
 };
