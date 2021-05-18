@@ -22,7 +22,7 @@ void UWARWorldActorRegistrationComponent::BeginPlay()
     {
         if ( auto * world_actor_registry = world->GetSubsystem< UWARWorldActorRegistry >() )
         {
-            if ( ensure( GameplayTag.IsValid() ) )
+            if ( ensureAlwaysMsgf( GameplayTag.IsValid(), TEXT( "No valid gameplay tag set in WAR component!" ) ) )
             {
                 world_actor_registry->AddActorToRegistry( GetOwner(), GameplayTag );
             }
